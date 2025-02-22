@@ -2,7 +2,7 @@
 // $connect = mysqli_connect( 'localhost', 'root', '' );
 // $Create = 'CREATE DATABASE IF NOT EXISTS hms';
 
-$connect = mysqli_connect( 'localhost', 'root', '', 'hospital' );
+$connect = mysqli_connect( 'localhost', 'root', 'root', 'hms' );
 
 // if ( !$connect ) {
 //   die( 'Connection failed: ' . mysqli_connect_error() );
