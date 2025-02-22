@@ -1,0 +1,1 @@
+<link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
