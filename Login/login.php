@@ -12,10 +12,10 @@ if(isset($_POST['login'])){
     $error['login'] = "Enter Password";
   }
   if(count($error)==0){
-    $query = "SELECT * FROM admin WHERE user='$username' AND password='$password'";
+    $query = "SELECT * FROM admins WHERE username='$username' AND PASSWORD='$password'";
     $result =mysqli_query($connect,$query);
     if(mysqli_num_rows($result)==1){
-      echo"<script>alert('WELCOME BACK ADMIN')</script>";
+      echo"<script>alert('WELCOME BACK ADMIN'); </script>";
       $_SESSION['admin']=$username;
       header("Location:../admin/index.php");
       exit();

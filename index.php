@@ -72,18 +72,7 @@ if(!isset($_SESSION['admin'])&&!isset($_SESSION['doctor'])&&!isset($_SESSION['pa
     </div>
   </section>
 
-  <div class="col-md-12 " style="background-image: url(img/hero-bg.jpg); height:100vh; display: grid;
-  text-align:center;">
-    <div class="row align-items-center">
-      <div class="col-md-6 ">
-        <h1< /h1>
-          <h5 class="fw-bolder" style="font-size:45px;">we are employing for doctors Manage their appointment</h5>
-          <a class="col-md-12 m-5" href="apply.php"><button style="font-size:30px;padding:10px;"
-              class="btn navigation fw-bolder shadow my-5 rounded-pill px-3">Join Us Now</button></a>
-      </div>
 
-    </div>
-  </div>
 
   <section id="services">
 

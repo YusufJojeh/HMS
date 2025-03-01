@@ -1,48 +1,34 @@
 <?php
 session_start();
 ?>
-<?php
-// تعطيل عرض الأخطاء على الشاشة
-ini_set( 'display_errors', 0 );
-ini_set( 'display_startup_errors', 0 );
-error_reporting( E_ALL );
-// تسجيل جميع الأخطاء
-ini_set( 'log_errors', 1 );
-// تمكين تسجيل الأخطاء
-ini_set( 'error_log', '/path/to/error_log' );
-// تحديد ملف سجل الأخطاء
-?>
 
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang='en'>
 
 <head>
-<meta charset = 'UTF-8'>
-<meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
-<title>Admin</title>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Admin</title>
 </head>
 
 <body>
-<?php
+  <?php
 
 include( 'sidenav.php' );
 include( '../include/connection.php' );
 ?>
-<div class = 'page contanier-fluid bg-dark text-white'>
-<div class = 'col-md-12'>
-<div class = 'row'>
-<div class = 'col-md-6 mx-1'>
-<h5 class = 'text-center fw-bold'>
-All Admin
-</h5>
-<?php
+  <div class='page contanier-fluid bg-dark text-white'>
+    <div class='col-md-12'>
+      <div class='row'>
+        <div class='col-md-6 mx-1'>
+          <h5 class='text-center fw-bold'>
+            All Admin
+          </h5>
+          <?php
 $ad = $_SESSION[ 'admin' ];
-$query = "SELECT A.id, A.user, ATT.type_id, ATT.permissions 
-                FROM admin A
-                JOIN admin_type ATT ON A.type_id = ATT.type_id 
-                WHERE A.user != '$ad'";
-
-;
+$query = "SELECT *
+                FROM admins 
+                WHERE username != '$ad'";
 $res = mysqli_query( $connect, $query );
 
 $output = " <table class='table table-responsive table-bordered'>
@@ -59,11 +45,10 @@ if ( mysqli_num_rows( $res )<1 ) {
                     </tr>";
 }
 while( $row = mysqli_fetch_array( $res ) ) {
-    $id = $row[ 'id' ];
-    $username = $row[ 'user' ];
-    $type1 = $row[ 'type_id' ];
-    $per = $row[ 'permissions' ];
-    if ( $type1 == 1 ) {
+    $id = $row[ 'admin_id' ];
+    $username = $row[ 'username' ];
+    $per = $row[ 'permssions' ];
+    if ( $per == 'FULL Permssions' ) {
 
         $output .= "
                   <tr>
@@ -74,7 +59,7 @@ while( $row = mysqli_fetch_array( $res ) ) {
         ;
 
     }
-    if ( $type1 != 1 ) {
+    if ( $per == 'Can\'t Add Or Delet Admins' ) {
 
         $output .= "
                   <tr>
@@ -82,7 +67,7 @@ while( $row = mysqli_fetch_array( $res ) ) {
                     <td>$username</td>
                     <td>$per</td>
                     <td>
-                      <a href ='admin.php?id=$id'><button id='remove' class='btn btn-danger'>
+                      <a href ='admin.php?id = $id'><button id='remove' class='btn btn-danger'>
                       Remove</button></a>
                     </td>";
     }
@@ -96,17 +81,17 @@ echo $output;
 if ( isset( $_GET[ 'id' ] ) && $type1 != 1 ) {
     $id = $_GET[ 'id' ];
 
-    $query = "DELETE FROM admin WHERE id='$id'";
+    $query = "DELETE FROM admins WHERE id='$id'";
     mysqli_query( $connect, $query );
 
 }
 
 ?>
 
-</div>
+        </div>
 
-<div class = 'col-md-5'>
-<?php
+        <div class='col-md-5'>
+          <?php
 if ( isset( $_POST[ 'add' ] ) ) {
     $uname = $_POST[ 'uname' ];
     $type = $_POST[ 'type' ];
@@ -122,7 +107,7 @@ if ( isset( $_POST[ 'add' ] ) ) {
     }
 
     if ( count( $error ) == 0 ) {
-        $q = "INSERT INTO admin(user,password,profile_img,type_id) VALUES ('$uname','$pass','$image','$type')";
+        $q = "INSERT INTO admins(user,password,profile_img,type_id) VALUES ('$uname','$pass','$image','$type')";
         $result = mysqli_query( $connect, $q );
         if ( $result ) {
             move_uploaded_file( $_FILES[ 'profile_img' ][ 'tmp_name' ], "C:\\xampp\htdocs\hms\img/$image" );
@@ -140,34 +125,34 @@ if ( isset( $error[ 'u' ] ) ) {
     $show = '';
 }
 ?>
-<h5 class = 'text-center fw-bold'> Add Admin</h5>
-<form method = 'post' enctype = 'multipart/form-data' action = ''>
-<div>
-<?php echo $show;
+          <h5 class='text-center fw-bold'> Add Admin</h5>
+          <form method='post' enctype='multipart/form-data' action=''>
+            <div>
+              <?php echo $show;
 ?>
-</div>
-<div class = 'form-group '>
-<label>Username</label>
-<input type = 'text' name = 'uname' class = 'form-control' autocomplete = 'off'>
-</div>
-<div class = 'form-group my-1'>
-<label>Type</label>
-<input type = 'number' name = 'type' class = 'form-control' autocomplete = 'off'>
-</div>
-<div class = 'form-group my-1'>
-<label>Password</label>
-<input type = 'password' name = 'pass' class = 'form-control' autocomplete = 'off'>
-</div>
-<div class = 'form-group my-3'>
-<label>Add Admin Picture</label>
-<input type = 'file' name = 'profile_img' class = 'from-control'>
-</div>
-<input type = 'submit' name = 'add' value = 'Add New Admin' class = 'btn btn-success'>
-</form>
-</div>
-</div>
-</div>
-</div>
+            </div>
+            <div class='form-group '>
+              <label>Username</label>
+              <input type='text' name='uname' class='form-control' autocomplete='off'>
+            </div>
+            <div class='form-group my-1'>
+              <label>Type</label>
+              <input type='number' name='type' class='form-control' autocomplete='off'>
+            </div>
+            <div class='form-group my-1'>
+              <label>Password</label>
+              <input type='password' name='pass' class='form-control' autocomplete='off'>
+            </div>
+            <div class='form-group my-3'>
+              <label>Add Admin Picture</label>
+              <input type='file' name='profile_img' class='from-control'>
+            </div>
+            <input type='submit' name='add' value='Add New Admin' class='btn btn-success'>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

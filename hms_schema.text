@@ -1,0 +1,97 @@
+
+CREATE TABLE Admins(
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    PASSWORD VARCHAR(255) NOT NULL,
+    profile_img VARCHAR(255),
+    TYPE ENUM('super_admin', 'admin') NOT NULL,
+    permssions ENUM(
+        'FULL Permssions',
+        'Can\'t Add Or Delet Admins'
+    ) NOT NULL,
+);
+
+CREATE TABLE Doctors (
+    doctor_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    phone VARCHAR(20),
+    country VARCHAR(100),
+    password VARCHAR(255) NOT NULL,
+    salary DECIMAL(10,2),
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+    profile_img VARCHAR(255)
+);
+
+CREATE TABLE Patients (
+    patient_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    phone VARCHAR(20),
+    birth_date DATE,
+    address TEXT,
+    PASSWORD VARCHAR(255) NOT NULL,
+    profile_img VARCHAR(255),
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Appointments (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_id INT NOT NULL,
+    patient_id INT NOT NULL,
+    appointment_date DATETIME NOT NULL,
+    symptoms TEXT,
+    status ENUM('pending', 'confirmed', 'completed', 'cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id) ON DELETE CASCADE,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Reports (
+    report_id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_id INT NOT NULL,
+    patient_id INT NOT NULL,
+    report_title VARCHAR(255) NOT NULL,
+    report_content TEXT,
+    report_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    img VARCHAR(255),
+    file VARCHAR(255),
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id) ON DELETE  NO ACTION,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Incomes (
+    income_id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_id INT NOT NULL,
+    patient_id INT NOT NULL,
+    date_discharge DATE,
+    amount_paid DECIMAL(10,2) NOT NULL,
+    description TEXT,
+    appointment_id INT,
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id) ON DELETE SET NULL,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE SET NULL,
+    FOREIGN KEY (appointment_id) REFERENCES Appointments(appointment_id) ON DELETE SET NULL
+);
+
+CREATE TABLE Doctors_Patients (
+    doctor_id INT NOT NULL,
+    patient_id INT NOT NULL,
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id) ON DELETE CASCADE,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Notifications (
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    user_type ENUM('admin', 'doctor', 'patient') NOT NULL,
+    message TEXT NOT NULL,
+    status ENUM('unread', 'read') DEFAULT 'unread',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

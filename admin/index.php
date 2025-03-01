@@ -1,21 +1,11 @@
 <?php
 session_start();
 ?>
-<?php
-// تعطيل عرض الأخطاء على الشاشة
-ini_set( 'display_errors', 0 );
-ini_set( 'display_startup_errors', 0 );
-error_reporting( E_ALL );
-// تسجيل جميع الأخطاء
-ini_set( 'log_errors', 1 );
-// تمكين تسجيل الأخطاء
-ini_set( 'error_log', '/path/to/error_log' );
-// تحديد ملف سجل الأخطاء
-?>
 
 <?php
 if ( !isset( $_SESSION[ 'admin' ] ) && !isset( $_SESSION[ 'doctor' ] ) && !isset( $_SESSION[ 'patient' ] ) ) {
-    include( '../include\header.php' );
+    // include( '../include\header.php' );
+    header( 'Location:../Login/login.php' );
 }
 
 include( 'sidenav.php' );
@@ -34,7 +24,7 @@ style = 'height:150px;   background: linear-gradient(to bottom, #2980b9, #6dd5fa
 <div class = 'row'>
 <div class = 'col-md-8 fw-bold'>
 <?php
-$ID = mysqli_query( $connect, 'SELECT * from admin ' ) ;
+$ID = mysqli_query( $connect, 'SELECT * from admins ' ) ;
 
 $id = mysqli_num_rows( ( $ID ) );
 ?>
@@ -129,7 +119,7 @@ style = 'height:150px;    background: linear-gradient(to bottom, #56ab2f, #b7df8
 <div class = 'col-md-8'>
 <?php
 
-$p = mysqli_query( $connect, 'SELECT sum(amount_paid) as profit FROM income' );
+$p = mysqli_query( $connect, 'SELECT sum(amount_paid) as profit FROM incomes' );
 $row = mysqli_fetch_array( $p );
 $inc = $row[ 'profit' ];
 

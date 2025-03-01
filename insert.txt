@@ -1,0 +1,46 @@
+
+IINSERT INTO `admins` (`admin_id`, `username`, `PASSWORD`, `profile_img`, `TYPE`, `permssions`) VALUES ('1', 'admin1', 'hashed_password_1', 'admin.jpg', 'super_admin', 'FULL Permssions');
+('admin1', 'hashed_password_1', 'admin1.jpg', 'super_admin', 'FULL Permissions'),
+(2,'admin2', 'hashed_password_2', 'admin2.jpg', 'admin', 'Can\'t Add Or Delete Admins');
+
+
+INSERT INTO Doctors (first_name, last_name, username, email, gender, phone, country, password, salary, status, profile_img)
+VALUES 
+('Ali', 'Hassan', 'ali_hassan', 'ali@example.com', 'Male', '123456789', 'Egypt', 'hashed_password_3', 5000.00, 'approved', 'doctor1.jpg'),
+('Sara', 'Mohamed', 'sara_mohamed', 'sara@example.com', 'Female', '987654321', 'UAE', 'hashed_password_4', 6000.00, 'pending', 'doctor2.jpg');
+
+-- إدراج بيانات في جدول المرضى
+INSERT INTO Patients (first_name, last_name, username, email, gender, phone, birth_date, address, password, profile_img)
+VALUES 
+('Omar', 'Ahmed', 'omar_ahmed', 'omar@example.com', 'Male', '1122334455', '1990-05-12', 'Cairo, Egypt', 'hashed_password_5', 'patient1.jpg'),
+('Laila', 'Khalid', 'laila_khalid', 'laila@example.com', 'Female', '5566778899', '1995-09-25', 'Dubai, UAE', 'hashed_password_6', 'patient2.jpg');
+
+-- إدراج بيانات في جدول المواعيد
+INSERT INTO Appointments (doctor_id, patient_id, appointment_date, symptoms, status)
+VALUES 
+(1, 1, '2025-03-10 14:00:00', 'Fever and headache', 'confirmed'),
+(2, 2, '2025-03-12 10:30:00', 'Cough and sore throat', 'pending');
+
+-- إدراج بيانات في جدول التقارير
+INSERT INTO Reports (doctor_id, patient_id, report_title, report_content, img, file)
+VALUES 
+(1, 1, 'Blood Test', 'Blood test shows normal values', 'blood_test.jpg', 'report1.pdf'),
+(2, 2, 'X-ray Report', 'Chest X-ray shows minor infection', 'xray.jpg', 'report2.pdf');
+
+-- إدراج بيانات في جدول الإيرادات
+INSERT INTO Incomes (doctor_id, patient_id, date_discharge, amount_paid, description, appointment_id)
+VALUES 
+(1, 1, '2025-03-11', 100.00, 'Consultation fee', 1),
+(2, 2, '2025-03-13', 150.00, 'X-ray and consultation', 2);
+
+-- إدراج بيانات في جدول علاقة الأطباء بالمرضى
+INSERT INTO Doctors_Patients (doctor_id, patient_id)
+VALUES 
+(1, 1),
+(2, 2);
+
+-- إدراج بيانات في جدول الإشعارات
+INSERT INTO Notifications (user_id, user_type, message, status)
+VALUES 
+(1, 'admin', 'New doctor registration pending approval', 'unread'),
+(2, 'doctor', 'Your appointment with patient Laila is scheduled', 'unread');

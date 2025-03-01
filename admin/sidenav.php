@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-// تعطيل عرض الأخطاء على الشاشة
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
-error_reporting(E_ALL); // تسجيل جميع الأخطاء
-ini_set('log_errors', 1); // تمكين تسجيل الأخطاء
-ini_set('error_log', '/path/to/error_log'); // تحديد ملف سجل الأخطاء
-?>
 
 <?php 
 include('../include/connection.php');?>
@@ -158,7 +150,7 @@ include('../include/connection.php');?>
               </div>
               <div class="modal-body">
                 <?php
-                $query0 = "SELECT * FROM notifications where doctor != 0 and status = 'unread' ";
+                $query0 = "SELECT * FROM notifications where user_type ='doctor' and status = 'unread' ";
                 $result0 = mysqli_query($connect,$query0);
                 if(mysqli_num_rows($result0)){
                 while($row = mysqli_fetch_array($result0)){
