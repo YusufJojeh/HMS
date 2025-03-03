@@ -31,9 +31,9 @@ while( $row = mysqli_fetch_array( $res ) ) {
     <div class='col-md-12'>
       <div class='row'>
         <div class='col-md-12'>
-          <div class='col-md-12'>
+          <div class='col-md-12 gap-3'>
             <div class='row'>
-              <div class='col-md-6 mx-2'>
+              <div class='col-md-6 '>
                 <h4 class='my-3 fw-bold'><?php echo"$username";
 ?> Profile</h4>
                 <?php
@@ -64,7 +64,7 @@ echo "<img src='img/$profiles'class='col-md-12 'style='height:250px;border-radiu
                   <input type='submit' name='update' value='UPDATE' class='btn btn-success invoice text-dark fw-bold '>
                 </form>
               </div>
-              <div class='col-md-5'>
+              <div class='col-md-6'>
                 <br>
                 <?php
 if ( isset( $_POST[ 'change' ] ) ) {

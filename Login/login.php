@@ -21,7 +21,7 @@ if(isset($_POST['login'])){
       exit();
     }
     else if(mysqli_num_rows($result)==0){
-      $q = "SELECT *FROM doctors WHERE user = '$username'AND password='$password'";
+      $q = "SELECT *FROM doctors WHERE username = '$username'AND PASSWORD='$password'";
       $qq =mysqli_query($connect,$q);
       $row = mysqli_fetch_array($qq);
       $err =array();
@@ -31,7 +31,7 @@ if(isset($_POST['login'])){
       elseif($row['status'] == "Rejected"){
     $err['login'] = "Try Again Later";
   }if(count($err)==0){
-          $query1 = "SELECT *FROM doctors WHERE user = '$username'AND password='$password'";
+          $query1 = "SELECT *FROM doctors WHERE username = '$username'AND PASSWORD='$password'";
       $result1 =mysqli_query($connect,$query1);
       if(mysqli_num_rows($result1)==1){
       echo"<script>alert('WELCOME BACK Doctor')</script>";
@@ -41,7 +41,7 @@ if(isset($_POST['login'])){
     }
 
     else if(mysqli_num_rows($result1)==0){
-      $query2 = "SELECT * FROM patient WHERE user = '$username'AND password='$password'";
+      $query2 = "SELECT * FROM patient WHERE username = '$username'AND PASSWORD='$password'";
       $result2 =mysqli_query($connect,$query2);
             if(mysqli_num_rows($result2)==1){
         echo"<script>alert('WELCOME BACK ')</script>";

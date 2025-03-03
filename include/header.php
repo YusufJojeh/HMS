@@ -45,8 +45,17 @@ if(!isset($_SESSION['admin'])&&!isset($_SESSION['doctor'])&&!isset($_SESSION['pa
      
          if(isset($_SESSION['admin'])){
             $user1 = $_SESSION['admin'];
-           echo'<li class="nav-item nav-tabs mx-3"><a href="#" class="nav-link text-black ">' . $user1 . '</a></li>
-              <li class="nav-item nav-tabs mx-3"><a href="logout.php" class="nav-link text-black">Logout</a></li>';
+          //  echo'<li class="nav-item nav-tabs mx-3"><a href="#" class="nav-link text-black ">' . $user1 . '</a></li>
+          //     <li class="nav-item nav-tabs mx-3"><a href="logout.php" class="nav-link text-black">Logout</a></li>';
+          echo '<li class="nav-item dropdown mx-3">
+        <a class="nav-link dropdown-toggle text-black" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+        . htmlspecialchars($user1) .
+        '</a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+        </ul>
+      </li>';
          }
          elseif(isset($_SESSION['doctor'])){
             $user2 = $_SESSION['doctor'];

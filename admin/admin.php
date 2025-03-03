@@ -18,9 +18,9 @@ include( 'sidenav.php' );
 include( '../include/connection.php' );
 ?>
   <div class='page contanier-fluid bg-dark text-white'>
-    <div class='col-md-12'>
+    <div class='col-md-12 gap-20'>
       <div class='row'>
-        <div class='col-md-6 mx-1'>
+        <div class='col-md-6 mx-2'>
           <h5 class='text-center fw-bold'>
             All Admin
           </h5>

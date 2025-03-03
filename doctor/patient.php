@@ -1,17 +1,7 @@
 <?php
 session_start();
 ?>
-<?php
-// تعطيل عرض الأخطاء على الشاشة
-ini_set( 'display_errors', 0 );
-ini_set( 'display_startup_errors', 0 );
-error_reporting( E_ALL );
-// تسجيل جميع الأخطاء
-ini_set( 'log_errors', 1 );
-// تمكين تسجيل الأخطاء
-ini_set( 'error_log', '/path/to/error_log' );
-// تحديد ملف سجل الأخطاء
-?>
+
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -51,7 +41,6 @@ $output .= "
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Gender</th>
-                <th>Country</th>
                 <th>Date Reg</th>
                 <th>Act</th>
                 </tr>  
@@ -68,14 +57,13 @@ While( $row = mysqli_fetch_array( $res ) ) {
     $output .= "
             <tr>
             <td>".$row[ 'patient_id' ]."</td>
-            <td>".$row[ 'firstname' ]."</td>
-            <td>".$row[ 'surname' ]."</td>
-            <td>".$row[ 'user' ]."</td>
+            <td>".$row[ 'first_name' ]."</td>
+            <td>".$row[ 'last_name' ]."</td>
+            <td>".$row[ 'username' ]."</td>
             <td>".$row[ 'email' ]."</td>
             <td>".$row[ 'phone' ]."</td>
             <td>".$row[ 'gender' ]."</td>
-            <td>".$row[ 'country' ]."</td>
-            <td>".$row[ 'date_reg' ]."</td>
+            <td>".$row[ 'registration_date' ]."</td>
             <td>
               <a href='view.php?patient_id=".$row[ 'patient_id' ]."'>
                   <button class='btn btn-primary'>View</button>
