@@ -1,0 +1,7 @@
+setup.py
+HMS_AI.egg-info/PKG-INFO
+HMS_AI.egg-info/SOURCES.txt
+HMS_AI.egg-info/dependency_links.txt
+HMS_AI.egg-info/entry_points.txt
+HMS_AI.egg-info/requires.txt
+HMS_AI.egg-info/top_level.txt

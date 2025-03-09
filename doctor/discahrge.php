@@ -41,10 +41,10 @@ if ( isset( $_GET[ 'id' ] ) ) {
   <div class='col-md-12'>
     <div class='row'>
       <div class='col-md-12'>
-        <h5 class='text-center'>Total Appointment</h5>
-        <div class='col-md-12 '>
+        <h5 class='text-center my-3'>Total Appointment</h5>
+        <div class='col-md-12 my-2'>
           <div class='row'>
-            <div class='col-md-6 gap-3 '>
+            <div class='col-md-6 mx-4'>
               <table class='table table-bordered'>
                 <tr>
                   <td colspan='2' class='text-center fw-bold'>Appointment Details</td>

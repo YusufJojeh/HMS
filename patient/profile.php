@@ -62,17 +62,17 @@ echo "<img src='img/".$row[ 'profile_img' ]."'class='col-md-12' style='height:25
                   </tr>
                   <tr>
                     <td>Firstname</td>
-                    <td><?php echo $row[ 'firstname' ];
+                    <td><?php echo $row[ 'first_name' ];
 ?></td>
                   </tr>
                   <tr>
                     <td>Surname</td>
-                    <td><?php echo $row[ 'surname' ];
+                    <td><?php echo $row[ 'last_name' ];
 ?></td>
                   </tr>
                   <tr>
                     <td>Username</td>
-                    <td><?php echo $row[ 'user' ];
+                    <td><?php echo $row[ 'username' ];
 ?></td>
                   </tr>
                   <tr>
@@ -90,11 +90,7 @@ echo "<img src='img/".$row[ 'profile_img' ]."'class='col-md-12' style='height:25
                     <td><?php echo $row[ 'gender' ];
 ?></td>
                   </tr>
-                  <tr>
-                    <td>Country</td>
-                    <td><?php echo $row[ 'country' ];
-?></td>
-                  </tr>
+
 
                 </table>
               </div>

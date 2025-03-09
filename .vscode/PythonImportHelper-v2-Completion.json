@@ -1,0 +1,96 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "find_packages",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "python-ai.app",
+        "description": "python-ai.app",
+        "peekOfCode": "def predict():\n    data = request.get_json()\n    symptoms = ['fever', 'cough', 'headache', 'fatigue']\n    input_data = [int(data.get(symptom, 0)) for symptom in symptoms]\n    prediction = model.predict([input_data])[0]\n    predicted_disease = label_mapping[prediction]\n    return jsonify({\"predicted_disease\": predicted_disease})\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5000)",
+        "detail": "python-ai.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "python-ai.app",
+        "description": "python-ai.app",
+        "peekOfCode": "app = Flask(__name__)\n# Load trained model and label mapping\nmodel = pickle.load(open(\"disease_model.pkl\", \"rb\"))\nlabel_mapping = pickle.load(open(\"label_mapping.pkl\", \"rb\"))\n@app.route(\"/predict\", methods=[\"POST\"])\ndef predict():\n    data = request.get_json()\n    symptoms = ['fever', 'cough', 'headache', 'fatigue']\n    input_data = [int(data.get(symptom, 0)) for symptom in symptoms]\n    prediction = model.predict([input_data])[0]",
+        "detail": "python-ai.app",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "python-ai.app",
+        "description": "python-ai.app",
+        "peekOfCode": "model = pickle.load(open(\"disease_model.pkl\", \"rb\"))\nlabel_mapping = pickle.load(open(\"label_mapping.pkl\", \"rb\"))\n@app.route(\"/predict\", methods=[\"POST\"])\ndef predict():\n    data = request.get_json()\n    symptoms = ['fever', 'cough', 'headache', 'fatigue']\n    input_data = [int(data.get(symptom, 0)) for symptom in symptoms]\n    prediction = model.predict([input_data])[0]\n    predicted_disease = label_mapping[prediction]\n    return jsonify({\"predicted_disease\": predicted_disease})",
+        "detail": "python-ai.app",
+        "documentation": {}
+    },
+    {
+        "label": "label_mapping",
+        "kind": 5,
+        "importPath": "python-ai.app",
+        "description": "python-ai.app",
+        "peekOfCode": "label_mapping = pickle.load(open(\"label_mapping.pkl\", \"rb\"))\n@app.route(\"/predict\", methods=[\"POST\"])\ndef predict():\n    data = request.get_json()\n    symptoms = ['fever', 'cough', 'headache', 'fatigue']\n    input_data = [int(data.get(symptom, 0)) for symptom in symptoms]\n    prediction = model.predict([input_data])[0]\n    predicted_disease = label_mapping[prediction]\n    return jsonify({\"predicted_disease\": predicted_disease})\nif __name__ == \"__main__\":",
+        "detail": "python-ai.app",
+        "documentation": {}
+    }
+]

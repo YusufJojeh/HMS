@@ -1,11 +1,3 @@
-<?php
-// تعطيل عرض الأخطاء على الشاشة
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
-error_reporting(E_ALL); // تسجيل جميع الأخطاء
-ini_set('log_errors', 1); // تمكين تسجيل الأخطاء
-ini_set('error_log', '/path/to/error_log'); // تحديد ملف سجل الأخطاء
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,6 +62,7 @@ ini_set('error_log', '/path/to/error_log'); // تحديد ملف سجل الأخ
                 <?php
                 include("../include/connection.php");
       if(isset($_POST['send'])){
+        $doctor = $_POST['doctor'];
           $title= $_POST['title'];
           $message=$_POST['message'];
           $img  = $_FILES['img']['name'];
@@ -80,7 +73,7 @@ ini_set('error_log', '/path/to/error_log'); // تحديد ملف سجل الأخ
 
           }else{
             $user = $_SESSION['patient'];
-            $query = "INSERT INTO report(title,message,patient,date_send,img,file) VALUES('$title','$message','$user',NOW(),'$img','$file')";
+            $query = "INSERT INTO reports(doctor_id, patient_id, report_title, report_content, img, file) VALUES('$doctor','$user','$title','$message','$img','$file')";
 
             $res = mysqli_query($connect,$query);
             if($res){
@@ -102,6 +95,22 @@ ini_set('error_log', '/path/to/error_log'); // تحديد ملف سجل الأخ
                       placeholder="Enter Message ">
                     <label class="">Photograph OF Test</label>
                     <input type="file" name="img" autocomplete="off" class="form-control">
+                    <label class="">File OF Test</label>
+                    <input type="file" name="file" autocomplete="off" class="form-control">
+                    <label for="doctor" class="form-label">Doctor</label>
+                    <select id="doctor" name="doctor" class="form-select" required>
+                      <option selected>Select Your Doctor</option>
+                      <?php
+                $doctorQuery = "SELECT doctor_id, first_name, last_name FROM doctors WHERE status='approved'";
+                $doctorResult = mysqli_query($connect, $doctorQuery);
+
+                while ($doctor = mysqli_fetch_array($doctorResult)) {
+                  echo "<option value='{$doctor['doctor_id']}'>{$doctor['first_name']} {$doctor['last_name']}</option>";
+                }
+                ?>
+                    </select>
+
+
                     <input type="submit" name="send" value="Send Report" class="btn btn-primary my-3">
                   </form>
                 </div>

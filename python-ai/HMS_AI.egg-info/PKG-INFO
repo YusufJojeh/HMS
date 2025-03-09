@@ -1,0 +1,9 @@
+Metadata-Version: 2.2
+Name: HMS_AI
+Version: 1.0
+Requires-Dist: flask
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: pickle-mixin
+Dynamic: requires-dist

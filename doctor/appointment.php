@@ -25,7 +25,8 @@ include( 'sidenav.php' );
         <div class='col-md-12'>
           <h5 class='text-center my-4 fw-bold'>Total Appointment</h5>
           <?php
-$query = "SELECT * FROM appointments a JOIN patients p on p.patient_id = a.patient_id WHERE status='pending'   ";
+$doc = $_SESSION[ 'doctor' ];
+$query = "SELECT * FROM appointments a JOIN doctors d on d.doctor_id = a.doctor_id WHERE a.status='pending' AND a.doctor_id='$doc'  ";
 $res = mysqli_query( $connect, $query );
 
 $output = '';
