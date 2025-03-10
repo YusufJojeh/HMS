@@ -178,7 +178,8 @@
   </script>
 </body>
 
-</html> --><?php
+</html> -->
+<?php
 session_start();
 include("../include/connection.php");
 

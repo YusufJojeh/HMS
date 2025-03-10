@@ -13,8 +13,9 @@ session_start();
 
 <body>
   <?php
-// include( '../include/header.php' );
 include( 'sidenav.php' );
+include( '../include/header.php' );
+
 include( '../include/connection.php' );
 ?>
   <div class='page container-fluid bg-dark text-white '>

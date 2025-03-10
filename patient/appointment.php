@@ -15,7 +15,7 @@ session_start();
 
 <?php
 include( 'sidenav.php' );
-
+include( '../include/header.php' );
 include( '../include/connection.php' );
 
 ?>
