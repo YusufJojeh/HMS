@@ -37,32 +37,27 @@ include( '../include/connection.php' );
 <?php
 $pat = $_SESSION[ 'patient' ];
 
-$query = "SELECT * FROM patients WHERE user='$pat'";
+$query = "SELECT * FROM patients WHERE username='$pat'";
 
 $res = mysqli_query( $connect, $query );
 
 $row = mysqli_fetch_array( $res );
 
-$fname = $row[ 'firstname' ];
+$fname = $row[ 'first_name' ];
 
 $querys = mysqli_query( $connect, "
                         SELECT 
-                            income.id,
-                            d.firstname AS doctor_firstname,
-                            d.surname AS doctor_surname,
-                            patients.firstname AS patient_firstname,
-                            patients.surname AS patient_surname,
-                            income.date_discharge,
-                            income.amount_paid
-
-                        FROM 
-                            income 
-                        JOIN 
-                            patients ON income.patient = patients.patient_id 
-                        JOIN 
-                            doctors d ON income.doctor = d.doctor_id 
-                        WHERE 
-                            patients.firstname = '$fname' ;
+    income_id,
+    d.first_name AS doctor_first_name,
+    d.last_name AS doctor_last_name,
+    patients.first_name AS patient_first_name,
+    patients.last_name AS patient_last_name,
+    incomes.date_discharge,
+    incomes.amount_paid
+FROM incomes
+JOIN patients ON incomes.patient_id = patients.patient_id 
+JOIN doctors d ON incomes.doctor_id = d.doctor_id 
+WHERE patients.first_name = '$fname';
                     " );
 
 $output = ' ';
@@ -95,8 +90,8 @@ if ( mysqli_num_rows( $querys ) < 1 ) {
         $output .= "                   
                                 <tr>                     
                                     <td>".$row[ 'id' ]."</td>                     
-                                    <td>".$row[ 'doctor_firstname' ].' '.$row[ 'doctor_surname' ]."</td>                     
-                                    <td>".$row[ 'patient_firstname' ].' '.$row[ 'patient_surname' ]."</td>                     
+                                    <td>".$row[ 'doctor_first_name' ].' '.$row[ 'doctor_last_name' ]."</td>                     
+                                    <td>".$row[ 'patient_first_name' ].' '.$row[ 'patient_last_name' ]."</td>                     
                                     <td>".$row[ 'date_discharge' ]."</td>                     
                                     <td>".$row[ 'amount_paid' ]."</td>'";
 

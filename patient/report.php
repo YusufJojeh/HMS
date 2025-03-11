@@ -26,7 +26,7 @@ include( '../include/connection.php' );
           <h5 class='text-center my-2 fw-bold'>Total Report</h5>
           <?php
 $pat = $_SESSION[ 'patient' ];
-$query = "SELECT report_title,report_content,created_at FROM reports where patient_id='$pat' order by date_send DESC";
+$query = "SELECT report_title,report_content,report_date FROM reports where patient_id='$pat' order by report_date DESC";
 $res = mysqli_query( $connect, $query );
 $output = '';
 $output .= "
@@ -50,10 +50,9 @@ while( $row = mysqli_fetch_array( $res ) ) {
     $output .= "
                   <tr>
 
-                    <td>".$row[ 'title' ]."</td>
-                    <td>".$row[ 'message' ]."</td>
-
-                    <td>".$row[ 'date_send' ]."</td>
+                    <td>".$row[ 'report_title' ]."</td>
+                    <td>".$row[ 'report_content' ]."</td>
+                    <td>".$row[ 'report_date' ]."</td>
                   
             ";
 }

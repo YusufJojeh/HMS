@@ -57,13 +57,13 @@
           echo'<li class="nav-item nav-tabs mx-3"><a href="#" class="nav-link text-black">' . $user3 . '</a></li>
               <li class="nav-item nav-tabs mx-3"><a href="logout.php" class="nav-link text-black"><i class="icon-signout mx-1"></i><span>Logout</span></a></li>';
         }
-        else {
-          echo'
-        <li class="nav-item nav-tabs mx-3"><a href="index.php" class="nav-link text-black">Home</a></li>
-      <li class="nav-item nav-tabs mx-3"><a href="login.php" class="nav-link text-black">Login
+//         else {
+//           echo'
+//         <li class="nav-item nav-tabs mx-3"><a href="index.php" class="nav-link text-black">Home</a></li>
+//       <li class="nav-item nav-tabs mx-3"><a href="login.php" class="nav-link text-black">Login
       
-</a></li>'; 
-  }
+// </a></li>'; 
+//   }
   ?>
 
                 </ul>

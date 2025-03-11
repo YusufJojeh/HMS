@@ -50,8 +50,9 @@ include( '../include/connection.php' );
             </div>
           </div>
         </div>
-        <!-- <?php include( '../include/footer.php' );
-?> -->
+        <?php include( 'modal.php' );
+?>
+
 </body>
 
 </html>
