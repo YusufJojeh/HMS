@@ -4,9 +4,9 @@ session_start();
 
 <body>
   <?php
-
 include( 'sidenav.php' );
 include( '../include/header.php' );
+
 include( '../include/connection.php' );
 ?>
 
@@ -51,6 +51,8 @@ include( '../include/connection.php' );
           </div>
         </div>
         <?php include( 'modal.php' );
+?>
+        <?php include( 'patient_form.php' );
 ?>
 
 </body>

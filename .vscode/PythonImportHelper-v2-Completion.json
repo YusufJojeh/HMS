@@ -58,6 +58,31 @@
         "documentation": {}
     },
     {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "RandomForestClassifier",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
         "label": "predict",
         "kind": 2,
         "importPath": "python-ai.app",
@@ -91,6 +116,69 @@
         "description": "python-ai.app",
         "peekOfCode": "label_mapping = pickle.load(open(\"label_mapping.pkl\", \"rb\"))\n@app.route(\"/predict\", methods=[\"POST\"])\ndef predict():\n    data = request.get_json()\n    symptoms = ['fever', 'cough', 'headache', 'fatigue']\n    input_data = [int(data.get(symptom, 0)) for symptom in symptoms]\n    prediction = model.predict([input_data])[0]\n    predicted_disease = label_mapping[prediction]\n    return jsonify({\"predicted_disease\": predicted_disease})\nif __name__ == \"__main__\":",
         "detail": "python-ai.app",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "python-ai.train_model",
+        "description": "python-ai.train_model",
+        "peekOfCode": "data = {\n    'fever': [1, 0, 1, 0, 1, 0, 1],\n    'cough': [0, 1, 1, 0, 0, 1, 1],\n    'headache': [1, 1, 0, 1, 0, 1, 0],\n    'fatigue': [0, 1, 1, 0, 1, 1, 1],\n    'disease': ['Flu', 'Cold', 'Flu', 'Migraine', 'COVID-19', 'Cold', 'COVID-19']\n}\ndf = pd.DataFrame(data)\n# Convert disease names to numeric codes\ndf['disease'] = df['disease'].astype('category')",
+        "detail": "python-ai.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "python-ai.train_model",
+        "description": "python-ai.train_model",
+        "peekOfCode": "df = pd.DataFrame(data)\n# Convert disease names to numeric codes\ndf['disease'] = df['disease'].astype('category')\ndf['disease_code'] = df['disease'].cat.codes\n# Split data\nX = df.drop(columns=['disease', 'disease_code'])\ny = df['disease_code']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n# Train model\nmodel = RandomForestClassifier(n_estimators=100, random_state=42)",
+        "detail": "python-ai.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "df['disease']",
+        "kind": 5,
+        "importPath": "python-ai.train_model",
+        "description": "python-ai.train_model",
+        "peekOfCode": "df['disease'] = df['disease'].astype('category')\ndf['disease_code'] = df['disease'].cat.codes\n# Split data\nX = df.drop(columns=['disease', 'disease_code'])\ny = df['disease_code']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n# Train model\nmodel = RandomForestClassifier(n_estimators=100, random_state=42)\nmodel.fit(X_train, y_train)\n# Save model and label mapping",
+        "detail": "python-ai.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "df['disease_code']",
+        "kind": 5,
+        "importPath": "python-ai.train_model",
+        "description": "python-ai.train_model",
+        "peekOfCode": "df['disease_code'] = df['disease'].cat.codes\n# Split data\nX = df.drop(columns=['disease', 'disease_code'])\ny = df['disease_code']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n# Train model\nmodel = RandomForestClassifier(n_estimators=100, random_state=42)\nmodel.fit(X_train, y_train)\n# Save model and label mapping\npickle.dump(model, open('disease_model.pkl', 'wb'))",
+        "detail": "python-ai.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "X",
+        "kind": 5,
+        "importPath": "python-ai.train_model",
+        "description": "python-ai.train_model",
+        "peekOfCode": "X = df.drop(columns=['disease', 'disease_code'])\ny = df['disease_code']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n# Train model\nmodel = RandomForestClassifier(n_estimators=100, random_state=42)\nmodel.fit(X_train, y_train)\n# Save model and label mapping\npickle.dump(model, open('disease_model.pkl', 'wb'))\npickle.dump(dict(enumerate(df['disease'].cat.categories)), open('label_mapping.pkl', 'wb'))\nprint(\"✅ Model trained and saved successfully!\")",
+        "detail": "python-ai.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "y",
+        "kind": 5,
+        "importPath": "python-ai.train_model",
+        "description": "python-ai.train_model",
+        "peekOfCode": "y = df['disease_code']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n# Train model\nmodel = RandomForestClassifier(n_estimators=100, random_state=42)\nmodel.fit(X_train, y_train)\n# Save model and label mapping\npickle.dump(model, open('disease_model.pkl', 'wb'))\npickle.dump(dict(enumerate(df['disease'].cat.categories)), open('label_mapping.pkl', 'wb'))\nprint(\"✅ Model trained and saved successfully!\")",
+        "detail": "python-ai.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "python-ai.train_model",
+        "description": "python-ai.train_model",
+        "peekOfCode": "model = RandomForestClassifier(n_estimators=100, random_state=42)\nmodel.fit(X_train, y_train)\n# Save model and label mapping\npickle.dump(model, open('disease_model.pkl', 'wb'))\npickle.dump(dict(enumerate(df['disease'].cat.categories)), open('label_mapping.pkl', 'wb'))\nprint(\"✅ Model trained and saved successfully!\")",
+        "detail": "python-ai.train_model",
         "documentation": {}
     }
 ]

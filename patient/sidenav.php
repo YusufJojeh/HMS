@@ -61,8 +61,18 @@
           <i class="fa-solid fa-book fa-fw"></i><span>Reports</span>
         </a>
       </li>
+
+      <li>
+        <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" data-bs-toggle="modal"
+          data-bs-target="#predictModal">
+          <i class="fa-solid fa-book fa-fw"></i><span> Predict Illness</span>
+        </a>
+      </li>
+
     </ul>
   </div>
+
+  <!-- /.sidebar -->
 
 
 
